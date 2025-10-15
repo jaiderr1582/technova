@@ -1,7 +1,7 @@
 // Reusable product card displaying key info and action buttons
 import Button from './Buttons';
 import Badge from './Badge';
-
+// ia
 type CardProps = {
   title: string;
   price: number;
