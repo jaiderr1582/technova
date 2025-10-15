@@ -4,13 +4,13 @@ declare global {
   var mongoose: { conn: any; promise: any } | undefined;
 }
 
-// Inicializa el caché global si no existe
+
 if (!global.mongoose) {
   global.mongoose = { conn: null, promise: null };
 }
 
 export async function connectDB() {
-  // ✅ Valida DENTRO de la función
+  
   if (!process.env.MONGODB_URI) {
     throw new Error('MONGODB_URI is not defined in environment variables');
   }
