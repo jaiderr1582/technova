@@ -5,6 +5,7 @@ import { useProducts } from '../hooks/useProducts';
 import Button from '@/components/ui/Buttons';
 import ProductCard from '@/components/ui/Card';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export default function DashboardPage() {
   const { user, logout } = useAuth();
@@ -13,10 +14,12 @@ export default function DashboardPage() {
   const [isCreating, setIsCreating] = useState(false);
 
   // Redirect to login if not authenticated
-  if (!user) {
+  useEffect(() => {
+    if (!user) {
     router.push('/login');
-    return null;
-  }
+    }
+  }, [user, router]);
+  
 
   const handleCreate = async () => {
     setIsCreating(true);
@@ -50,7 +53,7 @@ export default function DashboardPage() {
           </div>
           <div className="flex items-center space-x-4">
             <div className="text-right">
-              <p className="text-sm font-medium text-gray-900">{user.name}</p>
+              <p className="text-sm font-medium text-gray-900">{user?.name}</p>
               <p className="text-xs text-gray-500">Administrador</p>
             </div>
             <Button variant="secondary" size="sm" onClick={logout}>
@@ -103,13 +106,13 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {products.map(product => (
               <ProductCard
-                key={product.id}
+                key={product._id}
                 title={product.name}
                 price={product.price}
                 category={product.category}
                 isActive={product.isActive}
                 onEdit={() => alert(`Editar: ${product.name}`)}
-                onDelete={() => removeProduct(product.id!)}
+                onDelete={() => removeProduct(product._id!)}
               />
             ))}
           </div>
