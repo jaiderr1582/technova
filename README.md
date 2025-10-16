@@ -37,6 +37,7 @@ npm install
 
 3.Set up environment variables
 Create a .env.local file in the root directory:
+and write this: MONGODB_URI=mongodb://localhost:27017/technova
 
 
 4.Run the development server
@@ -51,32 +52,32 @@ Password: 123
 
 tech-nova/
 ├── public/
-│   └── (imágenes estáticas si las necesitas)
+│   └── 
 ├── src/
 │   ├── components/
-│   │   ├── ui/                 ← Button, Badge, Card
-│   │   └── layout/             ← DashboardLayout, AuthLayout
+│   │   ├── ui/                 
+│   │   └── layout/             
 │   ├── contexts/
-│   │   └── AuthContext.tsx     ← Estado global de autenticación
+│   │   └── AuthContext.tsx     
 │   ├── hooks/
-│   │   └── useProducts.ts      ← Lógica reutilizable para productos
+│   │   └── useProducts.ts      
 │   ├── lib/
-│   │   └── api.ts              ← Instancia de Axios
-│   ├── models/                 ← Interfaces TypeScript (NO Mongoose aquí)
+│   │   └── api.ts              
+│   ├── models/                  
 │   │   ├── Product.ts
 │   │   └── User.ts
 │   ├── pages/
 │   │   ├── api/
-│   │   │   └── products/       ← API Routes de Next.js (con Mongoose)
+│   │   │   └── products/       
 │   │   │       ├── id.ts
 │   │   │       └── index.ts
 │   │   ├── login.tsx
-│   │   ├── dashboard.tsx       ← Página principal
+│   │   ├── dashboard.tsx      
 │   │   └── _app.tsx
 │   ├── services/
-│   │   └── productService.ts   ← Servicios Axios
+│   │   └── productService.ts  
 │   └── utils/
-│       └── decorators.ts       ← Decorador para UserStore
+│       └── decorators.ts       
 ├── .env.local
 ├── next.config.js
 ├── tsconfig.json

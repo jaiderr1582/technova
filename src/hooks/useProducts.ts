@@ -46,7 +46,7 @@ export function useProducts() {
     try {
       const updated = await updateProduct(id, updates);
       setProducts(prev =>
-        prev.map(p => (p.id === id ? { ...p, ...updated } : p))
+        prev.map(p => (p._id === id ? { ...p, ...updated } : p))
       );
       return updated;
     } catch (err: any) {
@@ -58,7 +58,7 @@ export function useProducts() {
   const removeProduct = async (id: string) => {
     try {
       await deleteProduct(id);
-      setProducts(prev => prev.filter(p => p.id !== id));
+      setProducts(prev => prev.filter(p => p._id !== id));
     } catch (err: any) {
       throw new Error(err.message || 'Failed to delete product');
     }

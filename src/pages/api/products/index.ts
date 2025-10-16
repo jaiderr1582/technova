@@ -11,6 +11,7 @@ export default async function handler(
   switch (req.method) {
     case 'GET':
       try {
+        // Support optional filtering by category and brand via query parameters
         const { category, brand } = req.query;
         let filter: any = {};
         if (category) filter.category = category;
@@ -24,6 +25,7 @@ export default async function handler(
 
     case 'POST':
       try {
+        // Enforce SKU uniqueness to prevent duplicate products
         const existing = await Product.findOne({ sku: req.body.sku });
         if (existing) {
           return res.status(400).json({ message: 'SKU must be unique' });
@@ -36,6 +38,7 @@ export default async function handler(
       }
 
     default:
+      // Return 405 Method Not Allowed for unsupported HTTP methods
       res.setHeader('Allow', ['GET', 'POST']);
       return res.status(405).end(`Method ${req.method} Not Allowed`);
   }

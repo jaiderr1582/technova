@@ -4,24 +4,32 @@ import { useAuth } from '@/context/AuthContext';
 import Button from '@/components/ui/Buttons';
 
 export default function LoginPage() {
+  // Local state for form inputs and UI feedback
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Access authentication logic from global context
   const { login } = useAuth();
   const router = useRouter();
 
+  // Handle form submission with validation and error handling
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
+      // Attempt to authenticate user with provided credentials
       await login(email, password);
+      // Redirect to dashboard on successful login
       router.push('/dashboard');
     } catch (err: any) {
+      // Display user-friendly error message
       setError(err.message || 'Credenciales incorrectas');
     } finally {
+      // Always reset loading state after attempt
       setLoading(false);
     }
   };

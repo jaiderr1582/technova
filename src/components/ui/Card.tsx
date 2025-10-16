@@ -1,7 +1,7 @@
-// Reusable product card displaying key info and action buttons
+// Reusable product card with enhanced visual design and clear status indicators
 import Button from './Buttons';
 import Badge from './Badge';
-// ia
+
 type CardProps = {
   title: string;
   price: number;
@@ -20,20 +20,26 @@ export default function ProductCard({
   onDelete,
 }: CardProps) {
   return (
-    <div className="border rounded-lg p-4 shadow-sm">
-      <h3 className="font-bold">{title}</h3>
-      <p className="text-gray-600">${price.toFixed(2)}</p>
-      <div className="mt-2 flex justify-between items-center">
-        {/* Status badge showing active/inactive state */}
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 p-5">
+      <h3 className="font-semibold text-gray-900 text-lg truncate">{title}</h3>
+      <p className="text-lg font-bold text-indigo-600 mt-1">${price.toFixed(2)}</p>
+      
+      <div className="mt-3 flex justify-between items-center">
+        {/* Status badge with refined color scheme */}
         <Badge variant={isActive ? 'success' : 'warning'}>
-          {isActive ? 'Activo' : 'Inactivo'}
+          {isActive ? 'Active' : 'Inactive'}
         </Badge>
-        <span className="text-sm text-gray-500">{category}</span>
+        <span className="text-sm text-gray-500 font-medium">{category}</span>
       </div>
-      <div className="mt-4 flex gap-2">
-        {/* Action buttons for editing and deleting the product */}
-        <Button size="sm" onClick={onEdit}>Editar</Button>
-        <Button variant="secondary" size="sm" onClick={onDelete}>Eliminar</Button>
+
+      <div className="mt-4 pt-3 border-t border-gray-100 flex gap-2">
+        {/* Action buttons with consistent styling and spacing */}
+        <Button size="sm" onClick={onEdit}>
+          Edit
+        </Button>
+        <Button variant="danger" size="sm" onClick={onDelete}>
+          Delete
+        </Button>
       </div>
     </div>
   );
